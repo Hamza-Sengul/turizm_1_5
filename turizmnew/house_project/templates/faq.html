@@ -1,0 +1,411 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+<style>
+    /* Custom CSS */
+    body {
+        font-family: Arial, sans-serif;
+    }
+    
+    .faq-header {
+        background-color: #ff0000;
+        color: white;
+        padding: 15px 0;
+        text-align: center;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+    
+    .faq-container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 0 15px;
+    }
+    
+    .faq-item {
+        border-bottom: 1px solid #eee;
+        margin-bottom: 0;
+    }
+    
+    .faq-question {
+        background-color: #fff;
+        color: #333;
+        cursor: pointer;
+        padding: 15px;
+        width: 100%;
+        border: none;
+        text-align: left;
+        outline: none;
+        font-size: 16px;
+        transition: 0.4s;
+        position: relative;
+        font-weight: 500;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .faq-question:after {
+        content: '\002B';
+        color: #777;
+        font-weight: bold;
+        float: right;
+        margin-left: 5px;
+        font-size: 22px;
+    }
+    
+    .faq-question.active:after {
+        content: "\2212";
+    }
+    
+    .faq-answer {
+        padding: 0 18px;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.2s ease-out;
+        background-color: #f9f9f9;
+    }
+    
+    .faq-answer-content {
+        padding: 15px 0;
+    }
+    
+    /* First FAQ item is open */
+    .faq-item:first-child .faq-question:after {
+        content: "\2212";
+    }
+    
+    .faq-item:first-child .faq-answer {
+        max-height: 500px;
+    }
+    
+    @media (max-width: 768px) {
+        .faq-question {
+            font-size: 15px;
+            padding: 12px;
+        }
+    }
+</style>
+
+<div class="faq-header">
+    <h1 style="font-size: 20px;">Sıkça Sorulan Sorular</h1>
+</div>
+
+<div class="faq-container">
+    <div class="faq-item">
+        <button class="faq-question active">HANGİ BÖLGELERDE BUNGALOV KONAKLAMA SEÇENEKLERİ SUNUYORSUNUZ?</button>
+        <div class="faq-answer">
+            <div class="faq-answer-content">
+                <p>Türkiye'nin en güzel doğal bölgelerinde, özellikle deniz kenarı, orman içi ve dağlık alanlarda konumlanmış bungalovlar sunuyoruz. Sapanca, Abant, Kazdağları, Bolu, Şile, Ağva ve Karadeniz'in muhteşem doğasında yer alan bungalovlarımız bulunmaktadır.</p>
+                <p>Her bölge kendine özgü doğal güzellikleri ve aktiviteleriyle misafirlerimize benzersiz bir deneyim sunmaktadır. Bölgelere göre seçeneklerimiz hakkında daha fazla bilgi için bize ulaşabilirsiniz.</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="faq-item">
+        <button class="faq-question">BUNGALOVLARDA HANGİ OLANAKLAR MEVCUT?</button>
+        <div class="faq-answer">
+            <div class="faq-answer-content">
+                <p>Bungalovlarımız konforlu bir konaklama için gerekli tüm olanaklara sahiptir:</p>
+                <ul>
+                    <li>Tam donanımlı mutfak (buzdolabı, ocak, mikrodalga fırın)</li>
+                    <li>Oturma alanı ve yemek masası</li>
+                    <li>Klima ve/veya ısıtma sistemleri</li>
+                    <li>Banyo ve tuvalet</li>
+                    <li>TV ve ücretsiz Wi-Fi</li>
+                    <li>Bahçe mobilyaları ve bazılarında özel jakuzi</li>
+                    <li>Barbekü alanı</li>
+                    <li>Temiz çarşaf ve havlular</li>
+                </ul>
+                <p>Bungalovların özellikleri konuma ve seçtiğiniz bungalov tipine göre değişiklik gösterebilir. Rezervasyon yapmadan önce seçtiğiniz bungalovun detaylı bilgilerini inceleyebilirsiniz.</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="faq-item">
+        <button class="faq-question">REZERVASYON NASIL YAPILIR?</button>
+        <div class="faq-answer">
+            <div class="faq-answer-content">
+                <p>Rezervasyon yapmak için aşağıdaki adımları izleyebilirsiniz:</p>
+                <ol>
+                    <li>Web sitemizden istediğiniz bölgeyi ve tarihleri seçin</li>
+                    <li>Size uygun bungalovu belirleyin</li>
+                    <li>Kişi sayısı ve özel isteklerinizi belirtin</li>
+                    <li>İletişim bilgilerinizi girin</li>
+                    <li>Ödeme yöntemini seçin ve rezervasyonunuzu tamamlayın</li>
+                </ol>
+                <p>Rezervasyon işleminiz tamamlandıktan sonra onay e-postası alacaksınız. Ayrıca telefonla bizi arayarak da (0541 670 91 27) rezervasyon yapabilirsiniz.</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="faq-item">
+        <button class="faq-question">ERKEN REZERVASYON AVANTAJLARI VAR MI?</button>
+        <div class="faq-answer">
+            <div class="faq-answer-content">
+                <p>Evet, erken rezervasyon yaptığınızda birçok avantajdan yararlanabilirsiniz:</p>
+                <ul>
+                    <li>%15'e varan indirim fırsatları</li>
+                    <li>En iyi bungalovları seçme şansı</li>
+                    <li>Ödeme konusunda daha esnek seçenekler</li>
+                    <li>Seyahat planlarınızı daha rahat yapabilme imkanı</li>
+                </ul>
+                <p>Özellikle yüksek sezonda ve tatil dönemlerinde erken rezervasyon yapmanızı öneririz. Genellikle 3 ay öncesinden yapılan rezervasyonlar için özel fiyatlar sunuyoruz.</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="faq-item">
+        <button class="faq-question">REZERVASYON İPTALİ VE DEĞİŞİKLİĞİ NASIL YAPILIR?</button>
+        <div class="faq-answer">
+            <div class="faq-answer-content">
+                <p>Rezervasyon iptal ve değişiklik politikamız şu şekildedir:</p>
+                <ul>
+                    <li>Giriş tarihinden 14 gün öncesine kadar yapılan iptallerde tam iade yapılır</li>
+                    <li>Giriş tarihinden 7-14 gün öncesine kadar yapılan iptallerde %50 iade yapılır</li>
+                    <li>Giriş tarihine 7 günden az kala yapılan iptallerde iade yapılmaz</li>
+                </ul>
+                <p>Rezervasyon değişikliği için müsaitlik durumuna bağlı olarak tarih değişikliği yapılabilir. Değişiklik talebiniz için en kısa sürede bize ulaşmanızı öneririz. İptaller ve değişiklikler için web sitemizdeki hesabınızdan veya müşteri hizmetlerimizi arayarak işlem yapabilirsiniz.</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="faq-item">
+        <button class="faq-question">EVCİL HAYVAN KABUL EDİYOR MUSUNUZ?</button>
+        <div class="faq-answer">
+            <div class="faq-answer-content">
+                <p>Bazı bungalovlarımız evcil hayvan dostudur. Evcil hayvanınızla konaklama yapmak istiyorsanız, rezervasyon sırasında belirtmeniz gerekmektedir. Evcil hayvan kabul eden bungalovlarımızda aşağıdaki koşullar geçerlidir:</p>
+                <ul>
+                    <li>Küçük ve orta boy evcil hayvanlar kabul edilmektedir</li>
+                    <li>Evcil hayvanınızın aşılarının tam olması gerekmektedir</li>
+                    <li>Ek temizlik ücreti alınabilir</li>
+                    <li>Evcil hayvanınızın tesisteki diğer misafirleri rahatsız etmemesi beklenir</li>
+                </ul>
+                <p>Evcil hayvan kabul eden bungalovların sayısı sınırlıdır, bu nedenle önceden rezervasyon yapmanızı öneririz.</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="faq-item">
+        <button class="faq-question">TRANSFER HİZMETİ SAĞLIYOR MUSUNUZ?</button>
+        <div class="faq-answer">
+            <div class="faq-answer-content">
+                <p>Evet, ek ücret karşılığında transfer hizmeti sağlıyoruz. Transfer hizmetimiz şunları kapsar:</p>
+                <ul>
+                    <li>Havalimanından bungalova transfer</li>
+                    <li>Otobüs terminalinden bungalova transfer</li>
+                    <li>Şehir merkezinden bungalova transfer</li>
+                </ul>
+                <p>Transfer ücretleri mesafeye ve araç tipine göre değişiklik göstermektedir. Rezervasyon sırasında veya öncesinde transfer talebinizi belirtmeniz durumunda size özel fiyat teklifimizi sunabiliriz. Bütçenize ve grubunuzun büyüklüğüne göre farklı araç seçeneklerimiz mevcuttur.</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="faq-item">
+        <button class="faq-question">BUNGALOVLARIN ÇEVRESİNDE YAPILABİLECEK AKTİVİTELER NELERDİR?</button>
+        <div class="faq-answer">
+            <div class="faq-answer-content">
+                <p>Bungalov konumlarımız doğayla iç içe olduğundan çevrede yapılabilecek birçok aktivite bulunmaktadır:</p>
+                <ul>
+                    <li>Doğa yürüyüşleri ve trekking</li>
+                    <li>Bisiklet turları</li>
+                    <li>Balık tutma</li>
+                    <li>Kano ve SUP</li>
+                    <li>ATV safari</li>
+                    <li>Fotoğrafçılık turları</li>
+                    <li>Yerel pazarları ziyaret</li>
+                    <li>Bölgeye özgü kültürel turlar</li>
+                </ul>
+                <p>Bölgelere göre aktiviteler değişiklik gösterebilir. Rezervasyon sırasında veya konaklama öncesinde bölgedeki aktiviteler hakkında detaylı bilgi alabilirsiniz. Bazı aktiviteler için önceden rezervasyon yapılması gerekebilir.</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="faq-item">
+        <button class="faq-question">ÇOCUKLU AİLELER İÇİN UYGUN MU?</button>
+        <div class="faq-answer">
+            <div class="faq-answer-content">
+                <p>Evet, birçok bungalovumuz çocuklu aileler için uygundur. Çocuklu aileler için sunduğumuz avantajlar:</p>
+                <ul>
+                    <li>Geniş bahçe alanları</li>
+                    <li>Güvenli oyun alanları</li>
+                    <li>Çocuk yatakları ve yüksek sandalye imkanı (önceden talep edilmelidir)</li>
+                    <li>Doğayla iç içe eğlenceli vakit geçirme fırsatı</li>
+                    <li>Bazı tesislerimizde çocuklara özel aktiviteler</li>
+                </ul>
+                <p>Çocuklarınızın yaşına ve ihtiyaçlarına göre en uygun bungalovu seçmenize yardımcı olabiliriz. Rezervasyon yaparken çocuklarınızın yaşını ve özel ihtiyaçlarını belirtmenizi öneririz.</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="faq-item">
+        <button class="faq-question">SÜRDÜRÜLEBİLİRLİK VE DOĞAYA DUYARLILIK KONUSUNDA NASIL ÖNLEMLER ALIYORSUNUZ?</button>
+        <div class="faq-answer">
+            <div class="faq-answer-content">
+                <p>Doğaya saygılı bir işletme olarak sürdürülebilirlik konusunda çeşitli önlemler alıyoruz:</p>
+                <ul>
+                    <li>Enerji tasarruflu aydınlatma ve cihazlar kullanıyoruz</li>
+                    <li>Su tasarrufu sağlayan sistemler kuruyoruz</li>
+                    <li>Atık ayrıştırma ve geri dönüşüm uygulamaları yapıyoruz</li>
+                    <li>Yerel üreticilerden tedarik edilen ürünleri tercih ediyoruz</li>
+                    <li>Doğal temizlik ürünleri kullanıyoruz</li>
+                    <li>Bazı tesislerimizde güneş enerjisi sistemleri bulunuyor</li>
+                </ul>
+                <p>Misafirlerimizden de doğaya saygılı davranmalarını, gereksiz su ve enerji tüketiminden kaçınmalarını ve çöplerini ayrıştırmalarını rica ediyoruz. Birlikte daha sürdürülebilir bir turizm için çalışıyoruz.</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="faq-item">
+        <button class="faq-question">BUNGALOVLARDA YEMEK SERVİSİ BULUNUYOR MU?</button>
+        <div class="faq-answer">
+            <div class="faq-answer-content">
+                <p>Bungalovlarımızda standart olarak yemek servisi bulunmamaktadır, ancak bazı tesislerimizde aşağıdaki hizmetleri sunuyoruz:</p>
+                <ul>
+                    <li>Kahvaltı sepeti servisi (ekstra ücretle)</li>
+                    <li>Yerel lezzetlerden oluşan öğle/akşam yemeği (önceden sipariş edilmelidir)</li>
+                    <li>Özel günler için organizasyon hizmeti</li>
+                </ul>
+                <p>Tüm bungalovlarımızda kendi yemeğinizi hazırlayabileceğiniz tam donanımlı mutfak bulunmaktadır. Ayrıca çoğu bungalovumuzun yakın çevresinde yerel restoran seçenekleri mevcuttur. Rezervasyon sırasında yemek servisi hakkında bize danışabilirsiniz.</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="faq-item">
+        <button class="faq-question">BUNGALOVLARDA ELEKTRİK KESİNTİSİ YAŞANIRSA NE YAPMALIYIM?</button>
+        <div class="faq-answer">
+            <div class="faq-answer-content">
+                <p>Doğa içerisindeki konumlar sebebiyle nadiren elektrik kesintileri yaşanabilir. Böyle bir durumda:</p>
+                <ul>
+                    <li>Her bungalovda acil durum aydınlatması ve el feneri bulunmaktadır</li>
+                    <li>7/24 ulaşabileceğiniz acil durum numaramızı arayabilirsiniz</li>
+                    <li>Bazı bungalovlarımızda jeneratör bulunmaktadır</li>
+                </ul>
+                <p>Elektrik kesintileri genellikle kısa sürer. Uzun süreli kesintilerde teknik ekibimiz en kısa sürede sorunu çözmek için müdahale edecektir. Özel ihtiyaçlarınız varsa (örneğin tıbbi cihaz kullanımı) lütfen rezervasyon sırasında belirtiniz.</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="faq-item">
+        <button class="faq-question">BUNGALOVLARA GİRİŞ VE ÇIKIŞ SAATLERİ NEDİR?</button>
+        <div class="faq-answer">
+            <div class="faq-answer-content">
+                <p>Standart giriş ve çıkış saatlerimiz şu şekildedir:</p>
+                <ul>
+                    <li>Giriş (Check-in): 14:00 - 20:00 arası</li>
+                    <li>Çıkış (Check-out): En geç 11:00</li>
+                </ul>
+                <p>Erken giriş ve geç çıkış imkanları müsaitlik durumuna göre sağlanabilir. Bu tür taleplerinizi önceden bildirmeniz gerekmektedir. Gece geç saatte varış yapacaksanız, lütfen bizi önceden bilgilendirin. Bazı durumlarda ek ücret karşılığında esnek giriş-çıkış saatleri sunabiliriz.</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="faq-item">
+        <button class="faq-question">BUNGALOVLARDA MUTFAK VAR MI? KENDİ YEMEĞİMİ HAZIRLAYABİLİR MİYİM?</button>
+        <div class="faq-answer">
+            <div class="faq-answer-content">
+                <p>Evet, tüm bungalovlarımızda kendi yemeğinizi hazırlayabileceğiniz tam donanımlı mutfak bulunmaktadır. Mutfaklarda genel olarak şu ekipmanlar yer alır:</p>
+                <ul>
+                    <li>Buzdolabı</li>
+                    <li>Ocak (elektrikli veya gazlı)</li>
+                    <li>Mikrodalga fırın</li>
+                    <li>Su ısıtıcısı</li>
+                    <li>Kahve/çay makinesi</li>
+                    <li>Tencere, tava, tabak, bardak, çatal-bıçak takımı</li>
+                    <li>Temel mutfak gereçleri</li>
+                </ul>
+                <p>Ayrıca bazı bungalovlarımızın bahçesinde mangal yapma imkanı da bulunmaktadır. En yakın market ve alışveriş noktaları hakkında bilgi için resepsiyon görevlimizden yardım alabilirsiniz.</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="faq-item">
+        <button class="faq-question">ÇAMAŞIR YIKAMA VEYA ÜTÜ HİZMETİNİZ VAR MI?</button>
+        <div class="faq-answer">
+            <div class="faq-answer-content">
+                <p>Bazı bungalov tesislerimizde çamaşır yıkama ve ütü hizmetleri sunulmaktadır:</p>
+                <ul>
+                    <li>Ortak kullanım alanında çamaşır makinesi bulunan tesisler</li>
+                    <li>Ek ücret karşılığında çamaşır yıkama hizmeti</li>
+                    <li>Talep üzerine ütü temin edilebilen bungalovlar</li>
+                </ul>
+                <p>Bu hizmetlerin varlığı ve koşulları tesisten tesise değişiklik gösterebilir. Uzun süreli konaklamalarda çamaşır yıkama ihtiyacınız olabileceğini düşünüyorsanız, rezervasyon yapmadan önce bu konuda bilgi almanızı öneririz.</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="faq-item">
+        <button class="faq-question">BUNGALOVLAR DÖRT MEVSİM AÇIK MI?</button>
+        <div class="faq-answer">
+            <div class="faq-answer-content">
+                <p>Evet, birçok bungalovumuz dört mevsim hizmet vermektedir. Her mevsime uygun özelliklere sahip bungalovlarımız bulunmaktadır:</p>
+                <ul>
+                    <li>Kış ayları için merkezi ısıtma veya şömine</li>
+                    <li>Yaz ayları için klima veya doğal serinletme sistemleri</li>
+                    <li>Her mevsim kullanılabilen oturma alanları</li>
+                </ul>
+                <p>Bölgeye ve hava koşullarına bağlı olarak bazı tesislerimiz belirli dönemlerde kapalı olabilir. Özellikle kış aylarında ziyaret etmek istediğiniz bölgede bulunan bungalovlarımızın açık olup olmadığını kontrol etmenizi öneririz.</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="faq-item">
+        <button class="faq-question">İNTERNET ERİŞİMİ MEVCUT MU?</button>
+        <div class="faq-answer">
+            <div class="faq-answer-content">
+                <p>Çoğu bungalovumuzda ücretsiz Wi-Fi internet erişimi mevcuttur. Ancak doğa içerisindeki konumları nedeniyle bazı noktalarda internet bağlantısı sınırlı olabilir veya kesintiler yaşanabilir.</p>
+                <p>Eğer internet erişimi sizin için çok önemliyse, rezervasyon yapmadan önce seçtiğiniz bungalovda internet hızı ve kalitesi hakkında bilgi almanızı öneririz. Ayrıca bazı bölgelerde mobil internet erişimi de sınırlı olabilir.</p>
+                <p>Bununla birlikte, konaklama deneyiminizin bir parçası olarak dijital detoks yapmayı ve doğanın tadını çıkarmayı da değerlendirebilirsiniz.</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="faq-item">
+        <button class="faq-question">BUNGALOVLARDA TEMİZLİK HİZMETİ SAĞLANIYOR MU?</button>
+        <div class="faq-answer">
+            <div class="faq-answer-content">
+                <p>Bungalovlarımızda temizlik hizmeti şu şekilde sağlanmaktadır:</p>
+                <ul>
+                    <li>Giriş öncesi detaylı temizlik ve dezenfeksiyon</li>
+                    <li>3 günden uzun konaklamalarda ara temizlik hizmeti</li>
+                    <li>Talep üzerine ek ücretle günlük temizlik hizmeti</li>
+                    <li>Çarşaf ve havlu değişimi (genellikle 3 günde bir)</li>
+                </ul>
+                <p>Temizlik standartlarımız yüksektir ve tüm bungalovlarımız hijyen kurallarına uygun şekilde hazırlanmaktadır. Konaklamanız sırasında ek temizlik veya çarşaf/havlu değişimi ihtiyacınız olursa, lütfen bize bildirin.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- WhatsApp Button -->
+
+
+<!-- Bootstrap, jQuery, and Popper.js -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.min.js"></script>
+
+<script>
+    // Accordion functionality
+    document.addEventListener("DOMContentLoaded", function() {
+        var acc = document.getElementsByClassName("faq-question");
+        var i;
+
+        for (i = 0; i < acc.length; i++) {
+            acc[i].addEventListener("click", function() {
+                // Toggle active class
+                this.classList.toggle("active");
+                
+                // Toggle between hiding and showing the answer
+                var answer = this.nextElementSibling;
+                if (answer.style.maxHeight) {
+                    answer.style.maxHeight = null;
+                } else {
+                    answer.style.maxHeight = answer.scrollHeight + "px";
+                }
+            });
+        }
+    });
+</script>
+{% endblock %}

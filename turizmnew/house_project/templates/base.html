@@ -1,0 +1,721 @@
+<!-- templates/base.html -->
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% if page_title %}{{ page_title }} - {% endif %}SURFTURİZM</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        /* Custom CSS */
+        .promo-banner {
+            background-color: #ff0000;
+            color: white;
+            text-align: center;
+            padding: 8px 0;
+            font-weight: bold;
+        }
+        
+        .navbar-brand img {
+            height: 50px;
+        }
+        
+        .nav-menu {
+            background-color: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .nav-menu .nav-link {
+            color: #333;
+            font-weight: 500;
+            padding: 15px 20px;
+        }
+        
+        .hero-section {
+            background-size: cover;
+            background-position: center;
+            min-height: 400px;
+            position: relative;
+        }
+        
+        .search-box {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            margin-top: -80px;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .whatsapp-button {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background-color: #25d366;
+            color: white;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            z-index: 1000;
+            font-size: 30px;
+            text-decoration: none;
+        }
+        
+        .whatsapp-button:hover {
+            background-color: #128C7E;
+            color: white;
+            text-decoration: none;
+        }
+        
+        .category-section {
+            padding: 40px 0;
+        }
+        
+        .category-title {
+            text-align: center;
+            margin-bottom: 30px;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .category-card {
+            margin-bottom: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .category-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .category-card img {
+            height: 200px;
+            object-fit: cover;
+            width: 100%;
+        }
+        
+        .search-button {
+            background-color: #ff0000;
+            border-color: #ff0000;
+        }
+        
+        .search-button:hover {
+            background-color: #cc0000;
+            border-color: #cc0000;
+        }
+        
+        .house-card {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            margin-bottom: 25px;
+            height: 100%;
+        }
+        
+        .house-card img {
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        footer {
+            background-color: #f8f9fa;
+            padding: 30px 0;
+            border-top: 1px solid #eee;
+        }
+        
+        /* Mobil Navbar ve Offcanvas için CSS */
+        .mobile-menu-button {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: #333;
+        }
+        
+        .sidenav {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            z-index: 1050;
+            top: 0;
+            left: 0;
+            background-color: #fff;
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 60px;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+        }
+        
+        .sidenav .closebtn {
+            position: absolute;
+            top: 10px;
+            right: 25px;
+            font-size: 36px;
+            margin-left: 50px;
+            text-decoration: none;
+            color: #333;
+        }
+        
+        .sidenav .nav-link {
+            padding: 15px 25px;
+            text-decoration: none;
+            font-size: 18px;
+            color: #333;
+            display: block;
+            transition: 0.3s;
+            border-bottom: 1px solid #f1f1f1;
+        }
+        
+        .sidenav .nav-link:hover {
+            color: #ff0000;
+            background-color: #f9f9f9;
+        }
+        
+        .overlay {
+            position: fixed;
+            display: none;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0,0,0,0.5);
+            z-index: 1040;
+            cursor: pointer;
+        }
+        
+        @media (max-width: 768px) {
+            .search-box {
+                margin-top: 20px;
+            }
+            
+            .hero-section {
+                min-height: 300px;
+            }
+            
+            .mobile-menu-button {
+                display: block;
+                margin-left: 130px;
+            }
+            
+            .desktop-menu {
+                display: none;
+            }
+        }
+
+        /* Testimonials Section */
+        .testimonials-section {
+          background-color: #f9f9f9;
+        }
+
+        .testimonial-card {
+          transition: all 0.3s ease;
+          border-left: 4px solid #ff0000;
+        }
+
+        .testimonial-card:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .stars {
+          color: #ffc107;
+        }
+
+        .carousel-control-prev, 
+        .carousel-control-next {
+          width: 40px;
+          height: 40px;
+          background-color: rgba(0,0,0,0.5);
+          border-radius: 50%;
+          top: 50%;
+          transform: translateY(-50%);
+        }
+
+        .carousel-control-prev {
+          left: -20px;
+        }
+
+        .carousel-control-next {
+          right: -20px;
+        }
+
+        /* Mobile responsiveness for testimonials */
+        @media (max-width: 767px) {
+          .carousel-control-prev {
+            left: 10px;
+          }
+          
+          .carousel-control-next {
+            right: 10px;
+          }
+          
+          .testimonial-text {
+            font-size: 14px;
+          }
+        }
+
+        /* Footer styles */
+        footer {
+          background-color: #1a1a1a !important;
+        }
+
+        footer h5 {
+          font-weight: 600;
+          position: relative;
+          padding-bottom: 10px;
+        }
+
+        footer h5:after {
+          content: '';
+          position: absolute;
+          left: 0;
+          bottom: 0;
+          width: 50px;
+          height: 2px;
+          background-color: #ff0000;
+        }
+
+        footer ul li a:hover {
+          color: #ff0000 !important;
+          text-decoration: none;
+          padding-left: 5px;
+          transition: all 0.3s ease;
+        }
+
+        .newsletter-form .btn-primary {
+          background-color: #ff0000;
+          border-color: #ff0000;
+        }
+
+        .tursab-logo {
+          transition: all 0.3s ease;
+        }
+
+        .tursab-logo:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .payment-methods img {
+          height: 30px;
+          filter: brightness(0) invert(1);
+          transition: all 0.3s ease;
+        }
+
+        .payment-methods img:hover {
+          transform: translateY(-3px);
+        }
+        #categoryCarousel .carousel-inner {
+  padding-bottom: 30px;
+}
+
+#categoryCarousel .carousel-indicators {
+  bottom: 0;
+}
+
+#categoryCarousel .carousel-indicators li {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #ccc;
+}
+
+#categoryCarousel .carousel-indicators li.active {
+  background-color: #ff0000;
+}
+
+#categoryCarousel .carousel-control-prev,
+#categoryCarousel .carousel-control-next {
+  width: 32px;
+  height: 32px;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0,0,0,0.3);
+  border-radius: 50%;
+  opacity: 0.8;
+}
+
+#categoryCarousel .category-card {
+  margin: 0 10px;
+}
+
+/* Add touch-friendly scrolling for mobile devices */
+@media (max-width: 767px) {
+  #categoryCarousel {
+    touch-action: pan-y;
+  }
+  
+  .category-card {
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  }
+}
+/* Mobile Category Horizontal Scrolling Styles */
+.mobile-category-wrapper {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.mobile-category-scroll {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch; /* for smooth scrolling on iOS */
+  scrollbar-width: none; /* hide scrollbar on Firefox */
+  -ms-overflow-style: none; /* hide scrollbar on IE/Edge */
+  padding: 10px 0;
+}
+
+/* Hide scrollbar for Chrome/Safari */
+.mobile-category-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.mobile-category-item {
+  flex: 0 0 auto;
+  width: 150px; /* adjust card width to match your design */
+  padding: 0 5px;
+  scroll-snap-align: start;
+}
+
+.mobile-category-item .category-card {
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  margin-bottom: 10px;
+}
+
+.mobile-category-item .category-card img {
+  height: 150px; /* adjust height to match your design */
+  object-fit: cover;
+  width: 100%;
+}
+
+.mobile-category-item .card-title {
+  font-size: 14px;
+  font-weight: 500;
+}
+.house-card {
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  margin-bottom: 0px;
+  transition: transform 0.3s;
+}
+
+.house-card:hover {
+  transform: translateY(-5px);
+}
+
+.house-card img {
+  height: 350px;
+  object-fit: cover;
+  width: 100%;
+}
+
+.house-card .card-body {
+  padding: 15px;
+}
+
+.house-card .card-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.house-card .card-text {
+  font-size: 18px;
+  color: #ff0000 !important;
+  margin-bottom: 12px;
+}
+
+.house-card .btn {
+  border-color: #ff0000;
+  color: #ff0000;
+}
+
+.house-card .btn:hover {
+  background-color: #ff0000;
+  color: white;
+}
+/* Updated house card styles to match mobile screenshot */
+.house-card {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  border: none;
+}
+
+.card-img-wrapper {
+  position: relative;
+  padding-top: 100%; /* Sets aspect ratio */
+  overflow: hidden;
+}
+
+.card-img-wrapper img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.house-card .card-title {
+  font-size: 14px;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.house-card .card-text {
+  font-size: 14px;
+  color: #ff0000 !important;
+  font-weight: bold;
+}
+
+/* For tablet and desktop */
+@media (min-width: 768px) {
+  .house-card .card-title {
+    font-size: 16px;
+  }
+  
+  .house-card .card-text {
+    font-size: 16px;
+  }
+  
+  .card-img-wrapper {
+    padding-top: 65%;
+  }
+}
+        /* Mobile responsiveness for footer */
+        @media (max-width: 767px) {
+          footer h5 {
+            margin-top: 20px;
+          }
+          
+          .tursab-logo {
+            max-width: 80%;
+            margin: 0 auto;
+          }
+        }
+    </style>
+</head>
+<body>
+    <!-- Promo Banner -->
+    <div class="promo-banner">
+        ARALIK İNDİRİMLERİ BAŞLADI!
+    </div>
+    
+    <!-- Header -->
+    <header class="py-2">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-6">
+                    {% if site_settings and site_settings.navbar_logo %}
+                        <a class="navbar-brand" href="{% url 'home' %}">
+                            <img style="width: 60px; height: 60px; border-radius: 50%;" src="{{ site_settings.navbar_logo.url }}" alt="MyPauz Villam" class="img-fluid">
+                        </a>
+                    {% else %}
+                        <a class="navbar-brand" href="{% url 'home' %}">
+                            <h1 class="h3 mb-0">MyPauz Villam</h1>
+                        </a>
+                    {% endif %}
+                </div>
+                <div class="col-6 text-right">
+                    <!-- Mobil Menü Butonu -->
+                    <button class="mobile-menu-button" onclick="openNav()">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    
+                    <!-- Desktop Menu -->
+                    <nav class="nav-menu desktop-menu">
+                        <ul class="nav justify-content-end">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'home' %}">ANASAYFA</a>
+                            </li>
+                            <!-- <li class="nav-item">
+                                <a class="nav-link" href="#">MUĞLA VİLLA</a>
+                            </li> -->
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">SAPANCA BUNGALOV</a>
+                            </li>
+                            <!-- <li class="nav-item">
+                                <a class="nav-link" href="#">SAPANCA VİLLA</a>
+                            </li> -->
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">BLOG</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Soldan Açılır Offcanvas Menü -->
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a class="nav-link" href="{% url 'home' %}">ANASAYFA</a>
+        <!-- <a class="nav-link" href="#">MUĞLA VİLLA</a> -->
+        <a class="nav-link" href="#">SAPANCA BUNGALOV</a>
+        <!-- <a class="nav-link" href="#">SAPANCA VİLLA</a> -->
+        <a class="nav-link" href="#">BLOG</a>
+    </div>
+    
+    <!-- Overlay -->
+    <div id="overlay" class="overlay" onclick="closeNav()"></div>
+
+    <!-- Main Content -->
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <!-- WhatsApp Button -->
+    <a href="https://wa.me/905416709127" class="whatsapp-button">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-5">
+        <div class="container">
+          <div class="row">
+            <!-- TÜRSAB Sertifikası -->
+            <div class="col-md-3 mb-4">
+              <div class="tursab-logo bg-white p-3 text-center rounded">
+                <img src="https://via.placeholder.com/200x100?text=TURSAB+Logo" alt="TÜRSAB Digital Doğrulama Sistemi" class="img-fluid">
+                <p class="text-dark small mt-2 mb-0">TIKLAYIN ve acentamızın TÜRSAB'a kayıtlı resmi bir acente olup olmadığını öğrenin.</p>
+                <p class="text-dark font-weight-bold mb-0">Belge No: 11923</p>
+              </div>
+            </div>
+      
+            <!-- HAKKIMIZDA -->
+            <div class="col-md-3 mb-4">
+              <h5 class="mb-4">HAKKIMIZDA</h5>
+              <ul class="list-unstyled">
+                <li class="mb-2">
+                  <a href="{% url 'about' %}" class="text-white">
+                    <i class="fas fa-angle-right mr-2"></i>Hakkımızda
+                  </a>
+                </li>
+                <li class="mb-2">
+                  <a href="{% url 'privacy_security' %}" class="text-white">
+                    <i class="fas fa-angle-right mr-2"></i>Gizlilik ve Güvenlik
+                  </a>
+                </li>
+                <li class="mb-2">
+                  <a href="{% url 'terms' %}" class="text-white">
+                    <i class="fas fa-angle-right mr-2"></i>Kullanım Koşulları
+                  </a>
+                </li>
+                <li class="mb-2">
+                  <a href="{% url 'cancellation_refund' %}" class="text-white">
+                    <i class="fas fa-angle-right mr-2"></i>İptal ve İade Politikası
+                  </a>
+                </li>
+              </ul>
+            </div>
+      
+            <!-- ÖNEMLİ BİLGİLER -->
+            <div class="col-md-3 mb-4">
+              <h5 class="mb-4">ÖNEMLİ BİLGİLER</h5>
+              <ul class="list-unstyled">
+                <li class="mb-2">
+                  <a href="{% url 'contact' %}" class="text-white">
+                    <i class="fas fa-angle-right mr-2"></i>İletişim
+                  </a>
+                </li>
+                <li class="mb-2">
+                  <a href="#" class="text-white">
+                    <i class="fas fa-angle-right mr-2"></i>İade Talebi
+                  </a>
+                </li>
+                <li class="mb-2">
+                  <a href="{% url 'faq' %}" class="text-white">
+                    <i class="fas fa-angle-right mr-2"></i>Sıkça Sorulan Sorular
+                  </a>
+                </li>
+              </ul>
+            </div>
+      
+            <!-- BÜLTEN -->
+            <div class="col-md-3 mb-4">
+              <h5 class="mb-4">BÜLTEN</h5>
+              <p>Bültenimize üye olun. Tüm indirim ve fırsatlardan ilk sizin haberiniz olsun</p>
+              
+              <form class="newsletter-form">
+                <div class="input-group mb-3">
+                  <input type="email" class="form-control" placeholder="E-posta adresinizi yazın" aria-label="E-posta adresinizi yazın">
+                  <div class="input-group-append">
+                    <button class="btn btn-primary" type="button">
+                      <i class="fas fa-paper-plane"></i> Gönder
+                    </button>
+                  </div>
+                </div>
+                
+                <div class="custom-control custom-checkbox">
+                  <input type="checkbox" class="custom-control-input" id="privacyCheck">
+                  <label class="custom-control-label small" for="privacyCheck">
+                    Gizlilik ve Güvenlik Politikası'nı okudum ve kabul ediyorum.
+                  </label>
+                </div>
+              </form>
+            </div>
+          </div>
+      
+          <hr class="border-secondary my-4">
+          
+          <!-- Bottom footer -->
+          <div class="row align-items-center">
+            <div class="col-md-6 text-center text-md-left mb-3 mb-md-0">
+              <p class="mb-0">© 2025 Tüm hakları saklıdır.</p>
+            </div>
+            <div class="col-md-6 text-center text-md-right">
+              <div class="payment-methods">
+                <img src="https://via.placeholder.com/60x40?text=Mastercard" alt="Mastercard" class="mr-2">
+                <img src="https://via.placeholder.com/60x40?text=Visa" alt="Visa" class="mr-2">
+                <img src="https://via.placeholder.com/60x40?text=AmEx" alt="American Express" class="mr-2">
+                <img src="https://via.placeholder.com/60x40?text=Troy" alt="Troy" class="mr-2">
+              </div>
+            </div>
+          </div>
+        </div>
+    </footer>
+    
+    <!-- Bootstrap, jQuery, and Popper.js -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.min.js"></script>
+    
+    <!-- Offcanvas Menü JavaScript -->
+    <script>
+        function openNav() {
+            document.getElementById("mySidenav").style.width = "280px";
+            document.getElementById("overlay").style.display = "block";
+            document.body.style.overflow = "hidden"; // Arka planı kaydırmayı engelle
+        }
+        
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+            document.getElementById("overlay").style.display = "none";
+            document.body.style.overflow = "auto"; // Kaydırmayı tekrar etkinleştir
+        }
+    </script>
+</body>
+</html>

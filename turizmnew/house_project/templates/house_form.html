@@ -1,0 +1,30 @@
+{% extends 'base_admin.html' %}
+
+{% block content %}
+<h2 class="mb-4">{% if object %}Ev Düzenle{% else %}Yeni Ev Ekle{% endif %}</h2>
+<form method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
+  {% csrf_token %}
+  {{ form.as_p }}
+
+  <h4 class="mt-4">Ev Resimleri</h4>
+  {{ images.management_form }}
+  {% for image_form in images %}
+    <div class="form-group border p-2 mb-2">
+      {{ image_form.image.label_tag }}<br>
+      {{ image_form.image }}
+      {% if image_form.instance.pk and image_form.image.value %}
+        <div class="mt-2">
+          <img src="{{ image_form.instance.image.url }}" alt="Ev resmi" class="img-fluid" style="max-height: 100px;">
+        </div>
+      {% endif %}
+      {% if image_form.instance.pk %}
+        <div class="form-check mt-2">
+          {{ image_form.DELETE }} <label class="form-check-label" for="{{ image_form.DELETE.id_for_label }}">Sil</label>
+        </div>
+      {% endif %}
+    </div>
+  {% endfor %}
+
+  <button type="submit" class="btn btn-success">Kaydet</button>
+</form>
+{% endblock %}

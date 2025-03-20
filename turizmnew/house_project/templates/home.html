@@ -1,0 +1,229 @@
+<!-- templates/home.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+  <!-- Hero Section with Search Box -->
+  <section class="hero-section" style="background-image: url('https://via.placeholder.com/1920x800?text=Villa+Hero+Image');">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-10">
+          <div class="search-box">
+            <form class="row">
+              <div class="col-md-3 mb-3">
+                <label for="region"><i class="fas fa-map-marker-alt"></i> Bölge</label>
+                <select class="form-control" id="region">
+                  <option>Sapanca</option>
+                  <option>Muğla</option>
+                </select>
+              </div>
+              <div class="col-md-3 mb-3">
+                <label for="checkin"><i class="far fa-calendar-alt"></i> Giriş Tarihi</label>
+                <input type="date" class="form-control" id="checkin" value="2025-03-17">
+              </div>
+              <div class="col-md-3 mb-3">
+                <label for="checkout"><i class="far fa-calendar-alt"></i> Çıkış Tarihi</label>
+                <input type="date" class="form-control" id="checkout" value="2025-03-18">
+              </div>
+              <div class="col-md-2 mb-3">
+                <label for="guests"><i class="fas fa-users"></i> Misafirler</label>
+                <input type="number" class="form-control" id="guests" value="2" min="1">
+              </div>
+              <div class="col-md-1 mb-3 d-flex align-items-end">
+                <button type="submit" class="btn btn-primary search-button">ARA</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Popular Categories Section -->
+  <!-- Popular Categories Section -->
+<!-- Update this section in your home.html file -->
+<section class="category-section py-4">
+    <div class="container">
+      <h2 class="category-title">POPÜLER KATEGORİLER</h2>
+      
+      <!-- Desktop view (regular grid) -->
+      <div class="row d-none d-md-flex">
+        {% for category in categories %}
+          <div class="col-md-4">
+            <div class="category-card">
+              <img src="{{ category.photo.url }}" alt="{{ category.name }}" class="img-fluid">
+              <div class="card-body">
+                <h5 class="card-title">{{ category.name }}</h5>
+              </div>
+            </div>
+          </div>
+        {% empty %}
+          <div class="col-12">
+            <div class="alert alert-info text-center">
+              Henüz kategori eklenmedi.
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+      
+      <!-- Mobile view (horizontal scrolling) -->
+      <div class="mobile-category-wrapper d-md-none">
+        <div class="mobile-category-scroll">
+          {% for category in categories %}
+            <div class="mobile-category-item">
+              <div class="category-card">
+                <img src="{{ category.photo.url }}" alt="{{ category.name }}" class="img-fluid">
+                <div class="card-body p-2">
+                  <h5 class="card-title mb-0 text-center">{{ category.name }}</h5>
+                </div>
+              </div>
+            </div>
+          {% empty %}
+            <div class="mobile-category-item">
+              <div class="alert alert-info text-center">
+                Henüz kategori eklenmedi.
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </section>
+  
+
+  <!-- Houses Listing Section -->
+<!-- Houses Listing Section -->
+<section class="py-4 bg-light">
+    <div class="container">
+      <h2 class="text-center mb-4">SAPANCA VİLLALARI</h2>
+      <div class="row">
+        {% for house in houses %}
+          <div class="col-6 mb-3">
+            <div class="house-card card h-100">
+              {% if house.images.all %}
+                <div class="card-img-wrapper">
+                  <a href="{% url 'house_detail' house.pk %}"><img height="400px" src="{{ house.images.all.0.image.url }}" class="card-img-top" alt="{{ house.name }}"></a>
+                </div>
+              {% else %}
+                <div class="card-img-wrapper">
+                  <img height="400px" src="https://via.placeholder.com/350x200?text=Resim+Yok" class="card-img-top" alt="Resim Yok">
+                </div>
+              {% endif %}
+              <div style="margin-top: 40px;" class="card-body p-2">
+                <h5 class="card-title mb-1">{{ house.name }}</h5>
+                <p class="card-text text-danger font-weight-bold mb-2">{{ house.price }} ₺ / <span style="color: rgb(175, 174, 174);">gecelik</span></p>
+              </div>
+            </div>
+          </div>
+        {% empty %}
+          <div class="col-12">
+            <div class="alert alert-info text-center">
+              Henüz villa eklenmedi.
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+
+  <!-- testimonials.html (Bu bölümü home.html içine ekleyin, ya da include olarak kullanın) -->
+<section class="testimonials-section py-5 bg-white">
+    <div class="container">
+      <div class="row justify-content-center mb-4">
+        <div class="col-md-8 text-center">
+          <h2 class="section-title">MİSAFİR YORUMLARI</h2>
+          <p class="text-muted">Bungalovlarımızda konaklayan misafirlerimizin bizimle paylaştığı değerli yorumlar. Onların deneyimlerine göz atarak bungalov tatilimizin ruhunu yakalayabilirsiniz!</p>
+        </div>
+      </div>
+      
+      <div class="testimonial-carousel position-relative">
+        <div class="row">
+          <div class="col-12">
+            <div id="testimonialCarousel" class="carousel slide" data-ride="carousel">
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <div class="row">
+                    <div class="col-md-6 mb-4">
+                      <div class="testimonial-card p-4 h-100 bg-light rounded shadow-sm">
+                        <div class="stars mb-3">
+                          <i class="fas fa-star text-warning"></i>
+                          <i class="fas fa-star text-warning"></i>
+                          <i class="fas fa-star text-warning"></i>
+                          <i class="fas fa-star text-warning"></i>
+                          <i class="fas fa-star text-warning"></i>
+                        </div>
+                        <p class="testimonial-text">Bungalovda kaldığımız üç gün, şehir hayatının stresinden uzaklaşmak için ihtiyacımız olan tam da buydu. Sabah güneşin eşliğe uyanmak, bungalovun verandasında kahve içmek harikaydı. Eşimle baş başa sakin bir tatil geçirdik, odalar temiz ve rahattı. İlgili personel sayesinde kendimizi evimizde gibi hissettik. Kesinlikle tavsiye ederiz!</p>
+                        <div class="testimonial-author mt-3">
+                          <p class="mb-0 font-weight-bold">- Mert Yi***</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                      <div class="testimonial-card p-4 h-100 bg-light rounded shadow-sm">
+                        <div class="stars mb-3">
+                          <i class="fas fa-star text-warning"></i>
+                          <i class="fas fa-star text-warning"></i>
+                          <i class="fas fa-star text-warning"></i>
+                          <i class="fas fa-star text-warning"></i>
+                          <i class="fas fa-star text-warning"></i>
+                        </div>
+                        <p class="testimonial-text">İş hayatının temposundan bir süreliğine kaçmak istiyordum ve burası tam aradığım yer oldu. Bungalov oldukça modern ve konforluydu; soğuk akşamlarda şömine başında oturmak inanılmaz keyifliydi. Temizlik çok iyiydi, her şey düşünülmüştü. Sessizlik, doğa, rahatlık... Her şey harikaydı. Kesinlikle tekrar gelmek istiyorum!</p>
+                        <div class="testimonial-author mt-3">
+                          <p class="mb-0 font-weight-bold">- Ezgi De***</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <div class="row">
+                    <div class="col-md-6 mb-4">
+                      <div class="testimonial-card p-4 h-100 bg-light rounded shadow-sm">
+                        <div class="stars mb-3">
+                          <i class="fas fa-star text-warning"></i>
+                          <i class="fas fa-star text-warning"></i>
+                          <i class="fas fa-star text-warning"></i>
+                          <i class="fas fa-star text-warning"></i>
+                          <i class="fas fa-star text-warning"></i>
+                        </div>
+                        <p class="testimonial-text">Arkadaş grubumuzla geldiğimiz bu bungalov tatil beklentilerimizin çok üstündeydi. Özellikle gece yıldızları izlemek için oturma alanı çok güzel düşünülmüş. Bungalovlar konforlu ve genişti, hepimiz rahatça konakladık. Doğa yürüyüşü ve çevredeki keşif alanları da bir harikaydı. Personel güler yüzlüydü ve her konuda yardımcı oldular. Çok memnun kaldık!</p>
+                        <div class="testimonial-author mt-3">
+                          <p class="mb-0 font-weight-bold">- Selin Ka***</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                      <div class="testimonial-card p-4 h-100 bg-light rounded shadow-sm">
+                        <div class="stars mb-3">
+                          <i class="fas fa-star text-warning"></i>
+                          <i class="fas fa-star text-warning"></i>
+                          <i class="fas fa-star text-warning"></i>
+                          <i class="fas fa-star text-warning"></i>
+                          <i class="fas fa-star text-warning"></i>
+                        </div>
+                        <p class="testimonial-text">Tek başıma kafa dinlemek için mükemmel bir yer! Bungalov çok şık döşenmiş, verandasında oturup kitap okumak gibisi yok. Günün ilk ışıklarıyla uyanmak ve doğanın ortasında olmak bana çok iyi geldi. Doğayla bu kadar iç içe, sakin bir tatil arayan herkese öneririm. Tekrar gitmek için sabırsızlanıyorum!</p>
+                        <div class="testimonial-author mt-3">
+                          <p class="mb-0 font-weight-bold">- Canan Ya***</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-control-container">
+                <a class="carousel-control-prev" href="#testimonialCarousel" role="button" data-slide="prev">
+                  <span class="carousel-control-prev-icon bg-dark rounded-circle p-3" aria-hidden="true"></span>
+                  <span class="sr-only">Önceki</span>
+                </a>
+                <a class="carousel-control-next" href="#testimonialCarousel" role="button" data-slide="next">
+                  <span class="carousel-control-next-icon bg-dark rounded-circle p-3" aria-hidden="true"></span>
+                  <span class="sr-only">Sonraki</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}

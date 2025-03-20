@@ -1,0 +1,10 @@
+{% extends 'base_admin.html' %}
+
+{% block content %}
+<h2 class="mb-4">{% if object %}Kategori Düzenle{% else %}Yeni Kategori Ekle{% endif %}</h2>
+<form method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit" class="btn btn-success">Kaydet</button>
+</form>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends 'base_admin.html' %}
+
+{% block content %}
+<h2 class="mb-4">Silme Onayı</h2>
+<p>Bu evi silmek istediğinizden emin misiniz: <strong>{{ object.name }}</strong>?</p>
+<form method="post">
+  {% csrf_token %}
+  <button type="submit" class="btn btn-danger">Evet, Sil</button>
+  <a href="{% url 'admin_house_list' %}" class="btn btn-secondary">İptal</a>
+</form>
+{% endblock %}
