@@ -1,37 +1,38 @@
-<!-- templates/home.html -->
 {% extends 'base.html' %}
-
+{% load static %}
 {% block content %}
   <!-- Hero Section with Search Box -->
-  <section class="hero-section" style="background-image: url('https://via.placeholder.com/1920x800?text=Villa+Hero+Image');">
+  <section class="hero-section" style="background-image: url('{% static 'resim.jpg' %}'); background-size: cover; background-position: center; height: 500px;">
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-lg-10">
           <div class="search-box">
-            <form class="row">
-              <div class="col-md-3 mb-3">
+            
+              <div class="col-md-12 mb-3">
                 <label for="region"><i class="fas fa-map-marker-alt"></i> Bölge</label>
                 <select class="form-control" id="region">
                   <option>Sapanca</option>
-                  <option>Muğla</option>
+                  
                 </select>
               </div>
-              <div class="col-md-3 mb-3">
+              <div class="col-md-6 mb-3">
                 <label for="checkin"><i class="far fa-calendar-alt"></i> Giriş Tarihi</label>
-                <input type="date" class="form-control" id="checkin" value="2025-03-17">
+                <input type="date" class="form-control" id="checkin" value="2025-03-21">
               </div>
-              <div class="col-md-3 mb-3">
+              <div class="col-md-6 mb-3">
                 <label for="checkout"><i class="far fa-calendar-alt"></i> Çıkış Tarihi</label>
-                <input type="date" class="form-control" id="checkout" value="2025-03-18">
+                <input type="date" class="form-control" id="checkout" value="2025-03-22">
               </div>
-              <div class="col-md-2 mb-3">
+              <div class="col-md-12 mb-3">
                 <label for="guests"><i class="fas fa-users"></i> Misafirler</label>
                 <input type="number" class="form-control" id="guests" value="2" min="1">
               </div>
-              <div class="col-md-1 mb-3 d-flex align-items-end">
-                <button type="submit" class="btn btn-primary search-button">ARA</button>
+              <div class="col-md-12 mb-3">
+                <a href="https://wa.me/905541368304">
+                <button type="submit" class="btn btn-danger search-button w-100">ARA</button>
+                </a>
               </div>
-            </form>
+            
           </div>
         </div>
       </div>
