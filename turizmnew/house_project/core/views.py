@@ -95,6 +95,15 @@ class FAQView(TemplateView):
         context['site_settings'] = SiteSettings.objects.first()
         context['categories'] = Category.objects.all()
         return context
+    
+class kurallar(TemplateView):
+    template_name = "kurallar.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['site_settings'] = SiteSettings.objects.first()
+        context['categories'] = Category.objects.all()
+        return context
 
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.urls import reverse_lazy

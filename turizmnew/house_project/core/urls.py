@@ -6,7 +6,7 @@ from .views import (
     AdminDashboardView, 
     CategoryListView, CategoryCreateView, CategoryUpdateView, CategoryDeleteView,
     HouseListView, HouseCreateView, HouseUpdateView, HouseDeleteView,
-    HomeView, HouseDetailView, AboutView, PrivacySecurityView, TermsView, CancellationRefundView,
+    HomeView, HouseDetailView, AboutView, PrivacySecurityView, TermsView, CancellationRefundView, kurallar
 )
 
 urlpatterns = [
@@ -19,6 +19,7 @@ urlpatterns = [
     path('iletisim/', ContactView.as_view(), name='contact'),
     path('iade-talebi/', RefundRequestView.as_view(), name='refund_request'),
     path('sss/', FAQView.as_view(), name='faq'),
+    path('kurallar/', kurallar.as_view(), name='kurallar'),
     path('admin-panel/', AdminDashboardView.as_view(), name='admin_dashboard'),
     path('admin-panel/categories/', CategoryListView.as_view(), name='admin_category_list'),
     path('admin-panel/categories/create/', CategoryCreateView.as_view(), name='admin_category_create'),

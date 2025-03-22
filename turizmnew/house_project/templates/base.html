@@ -559,7 +559,7 @@
                                 <a class="nav-link" href="#">SAPANCA VİLLA</a>
                             </li> -->
                             <li class="nav-item">
-                                <a class="nav-link" href="#">BLOG</a>
+                                <a class="nav-link" href="{% url 'kurallar' %}">Kurallar ve Şartlar</a>
                             </li>
                         </ul>
                     </nav>
@@ -588,7 +588,7 @@
     </main>
 
     <!-- WhatsApp Button -->
-    <a href="https://wa.me/905541368304" class="whatsapp-button">
+    <a href="https://wa.me/905427898264" class="whatsapp-button">
         <i class="fab fa-whatsapp"></i>
     </a>
 
@@ -597,11 +597,11 @@
         <div class="container">
           <div class="row">
             <!-- TÜRSAB Sertifikası -->
-            <div class="col-md-3 mb-4">
+            <div class="col-md-3 mb-4" style="background-color: #1a1a1a00;">
               <div class="tursab-logo bg-white p-3 text-center rounded">
-                <img src="https://www.mypayzvillam.com/image/cache/catalog/6306C369-AD9F-4B93-95A7-B1CDF457DFE3-221x100fill.JPEG" alt="" width="" height="100" class="lazyload lazyloaded"data-ll-status="loaded">
-                <p class="text-dark small mt-2 mb-0">TIKLAYIN ve acentamızın TÜRSAB'a kayıtlı resmi bir acente olup olmadığını öğrenin.</p>
-                <p class="text-dark font-weight-bold mb-0">+905541368304</p>
+                <a href="https://www.tursabsorgulama.com/?acenta=8291" target="_blank">
+                  <img src="https://www.mypayzvillam.com/image/cache/catalog/6306C369-AD9F-4B93-95A7-B1CDF457DFE3-221x100fill.JPEG" alt="" width="" height="100" class="lazyload lazyloaded" srcset="https://www.mypayzvillam.com/image/cache/catalog/6306C369-AD9F-4B93-95A7-B1CDF457DFE3-221x100fill.JPEG 1x, https://www.mypayzvillam.com/image/cache/catalog/6306C369-AD9F-4B93-95A7-B1CDF457DFE3-442x200fill.JPEG 2x" data-ll-status="loaded">
+                              </a>
               </div>
             </div>
       
@@ -649,6 +649,11 @@
                 <li class="mb-2">
                   <a href="{% url 'faq' %}" class="text-white">
                     <i class="fas fa-angle-right mr-2"></i>Sıkça Sorulan Sorular
+                  </a>
+                </li>
+                <li class="mb-2">
+                  <a href="{% url 'kurallar' %}" class="text-white">
+                    <i class="fas fa-angle-right mr-2"></i>kurallar ve şartlar
                   </a>
                 </li>
               </ul>
